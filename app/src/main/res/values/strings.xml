@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">音乐可视化</string>
+    <string name="circle_type">环形样式</string>
+    <string name="vertical_type">直方样式</string>
+    <string name="record_pms">录音权限授予失败</string>
+    <string name="record_pm">权限被永久拒绝授权，请手动授予权限</string>
+
+
+</resources>
