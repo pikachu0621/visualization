@@ -18,8 +18,8 @@ class StraightSideAudioViewKt : BaseAudioView {
 
     private val DEFAULT_WIDTH = 400
     private val DEFAULT_HEIGHT = 200
-    private val linWidth = 40 // 宽
-    private val clearance = 0 // 间隙
+    private val linWidth = 15 // 宽
+    private val clearance = 5 // 间隙
     private val minHeight = 10 // 没有音乐时高度
     private var mPaint = Paint()
     private var t1 = 0
@@ -39,8 +39,8 @@ class StraightSideAudioViewKt : BaseAudioView {
 
         setMirror(true) // 是否镜像
         setSmooth(true) // 是否平滑
-        setSmoothInterval(3) // 平滑窗口
-        setCountIndex(0) // 跳过开头的第几个值
+        setSmoothInterval(5) // 平滑窗口
+        setCountIndex(3) // 跳过开头的第几个值
         setAnimationSpeed(80) // 动画速度
         setTimeInterpolator(LinearInterpolator()) // 动画差值器
         setRange(7f) // 幅度
@@ -59,7 +59,7 @@ class StraightSideAudioViewKt : BaseAudioView {
         t1 = linWidth + clearance
         val count = width / t1
         setMaxRange(height.toFloat())
-        return count + 1 /*/ 3*/
+        return count /*/ 3*/
 
     }
 
@@ -79,10 +79,10 @@ class StraightSideAudioViewKt : BaseAudioView {
                 (tt + (linWidth / 2)).toFloat(),
                 fl,
                 intArrayOf(
-                    0xFF000000.toInt(),
-                   /* Color.TRANSPARENT,*/
-                    /*0xFFFF0000.toInt(),*/
+                    0xFF6200EE.toInt(),
                     Color.TRANSPARENT
+                        /*0xFFFF0000.toInt(),
+                        Color.TRANSPARENT*/
                 ),
                 null,
                 Shader.TileMode.REPEAT
