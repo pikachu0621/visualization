@@ -16,7 +16,7 @@
 
 演示
 ----
-<video src="assets/v1.0.mp4"></video>
+<video src="assets/v1.0.mp4" width="800px" height="600px" controls="controls"></video>
 
 
 
@@ -55,6 +55,9 @@ mStraightSideAudioViewKt.stop()
 
 ```
 <br>
+
+>4. 当然还要播放一首Dj啦
+
 
 
 
