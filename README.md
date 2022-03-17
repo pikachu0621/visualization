@@ -16,7 +16,7 @@
 
 演示
 ----
-<iframe src="http://player.bilibili.com/player.html?aid=24931813&cid=42084760&page=1" scrolling="no" width="800px" height="600px" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<video src="./assets/v1.0.mp4" width="800px" height="600px" controls="controls"></video>
 
 
 
@@ -44,7 +44,7 @@
 ```
 <br>
 
->3. 控制
+>3. 控制  当然还要播放一首Dj啦
 ```java
 
 // 启动  必须有权限(动态申请)
@@ -56,8 +56,6 @@ mStraightSideAudioViewKt.stop()
 ```
 <br>
 
->4. 当然还要播放一首Dj啦
-<br><br>
 
 
 
