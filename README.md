@@ -16,7 +16,7 @@
 
 演示
 ----
-<video src="./assets/v1.0.mp4" width="800px" height="600px" controls="controls"></video>
+<video src="assets/v1.0.mp4"  controls="controls"></video>
 
 
 
