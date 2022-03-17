@@ -14,7 +14,7 @@
 ----
 ![](assets/se.png)
 
-演示
+演示 [assets/v1.0.mp4]
 ----
 <video src="assets/v1.0.mp4"  controls="controls"></video>
 
