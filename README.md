@@ -16,9 +16,7 @@
 
 演示
 ----
-<video id="video" controls="" preload="none">
-      <source id="mp4" src="assets/v1.0.mp4" type="video/mp4">
-</video>
+<video src="assets/v1.0.mp4"></video>
 
 
 
