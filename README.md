@@ -15,7 +15,7 @@
 ![](assets/se.png)
 
 演示 [assets/v1.0.mp4]
-<iframe height=498 width=510 src="http://player.youku.com/embed/XNjcyMDU4Njg0">
+<video src="assets/v1.0.mp4" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
 
 
 
