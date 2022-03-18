@@ -3,21 +3,21 @@
 提供比较稳定的可视化组件
 
 
-环形 AnnularAudioView.class
+环形样式 AnnularAudioView.class
 ----
 ![](assets/au.png)
 
 
 
 
-直方 StraightSideAudioView.class
+直方样式 StraightSideAudioView.class
 ----
 ![](assets/se.png)
 
 演示 [assets/v1.0.mp4]
 ---
-[播放不了？](assets/v1.0.mp4)
-<video src="assets/v1.0.mp4" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
+[查看视频演示](assets/v1.0.mp4)
+![](assets/v1.0.gif)
 
 
 
