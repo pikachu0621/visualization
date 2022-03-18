@@ -15,8 +15,7 @@
 ![](assets/se.png)
 
 演示 [assets/v1.0.mp4]
-<video src="assets/v1.0.mp4" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
-<iframe src="//player.bilibili.com/player.html?aid=509567982&bvid=BV1pu411Q7j8&cid=542377687&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<video src="//player.bilibili.com/player.html?aid=509567982&bvid=BV1pu411Q7j8&cid=542377687&page=1" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
 
 
 
