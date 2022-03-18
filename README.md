@@ -16,6 +16,7 @@
 
 演示 [assets/v1.0.mp4]
 ---
+[播放不了？](assets/v1.0.mp4)
 <video src="assets/v1.0.mp4" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
 
 
