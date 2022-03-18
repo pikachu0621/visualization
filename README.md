@@ -1,6 +1,6 @@
 音频可视化
 ===
-提供比较稳定的可视化组件
+提供比较流畅的音频可视化组件，同时可以自定义频谱图，FFT数据在BaseAudioView已处理好
 
 
 环形样式 AnnularAudioView.class
