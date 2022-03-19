@@ -17,7 +17,9 @@
 演示 [assets/v1.0.mp4]
 ---
 [查看视频演示](assets/v1.0.mp4)
+<br>
 [安装演示APP](assets/app-release.apk)
+<br>
 ![](assets/v1.0.gif)
 
 
