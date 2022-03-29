@@ -4,6 +4,7 @@
     <string name="vertical_type">直方样式</string>
     <string name="record_pms">录音权限授予失败</string>
     <string name="record_pm">权限被永久拒绝授权，请手动授予权限</string>
+    <string name="user_tp">请用（QQ音乐/网易云/酷狗音乐/等）播放一首你喜欢的音乐</string>
 
 
 </resources>
