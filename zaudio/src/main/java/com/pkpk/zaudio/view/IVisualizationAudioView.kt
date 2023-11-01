@@ -1,9 +1,8 @@
-package com.pikachu.visualization.audio
+package com.pkpk.zaudio.view
 
 import android.content.Context
 import android.graphics.Canvas
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Lifecycling
 
 
 interface IVisualizationAudioView {

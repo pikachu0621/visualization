@@ -1,15 +1,13 @@
-package com.pikachu.visualization.adapter
+package com.pkpk.zaudio.adapter
 
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Path
-import android.graphics.Shader
 import android.view.animation.LinearInterpolator
-import com.pikachu.visualization.audio.ViewCorrelationUtil
-import com.pikachu.visualization.audio.VisualizationAudioAdapter
-import com.pikachu.visualization.audio.VisualizationAudioView
+import com.pkpk.zaudio.view.ViewCorrelationUtil
+import com.pkpk.zaudio.view.VisualizationAudioAdapter
+import com.pkpk.zaudio.view.VisualizationAudioView
 
 class AnnularAdapter1:  VisualizationAudioAdapter() {
 
@@ -39,7 +37,7 @@ class AnnularAdapter1:  VisualizationAudioAdapter() {
         val config = view.getVisualizationAudioConfig()
         config.isMirror = true
         config.isSmooth = false
-        config.smoothInterval = 2
+        config.smoothInterval = 2F
         config.countIndex = 0
         config.animationSpeed = 80
         config.timeInterpolator = LinearInterpolator()
@@ -62,7 +60,7 @@ class AnnularAdapter1:  VisualizationAudioAdapter() {
         var upx = 0F
         var upy = 0F
 
-        for ((index, value) in transform!!.withIndex()) {
+        for ((index, value) in transform.withIndex()) {
             var oneVar = value / 2
 
             if (oneVar <= minHeight) {

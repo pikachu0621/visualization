@@ -1,19 +1,13 @@
-package com.pikachu.visualization.adapter
+package com.pkpk.zaudio.adapter
 
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Shader
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.AnticipateInterpolator
-import android.view.animation.BounceInterpolator
-import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
-import com.pikachu.visualization.audio.DataManipulationUtil
-import com.pikachu.visualization.audio.VisualizationAudioAdapter
-import com.pikachu.visualization.audio.VisualizationAudioView
+import com.pkpk.zaudio.view.VisualizationAudioAdapter
+import com.pkpk.zaudio.view.VisualizationAudioView
 
 class StraightSideAdapter: VisualizationAudioAdapter() {
 
@@ -34,7 +28,7 @@ class StraightSideAdapter: VisualizationAudioAdapter() {
         val config = view.getVisualizationAudioConfig()
         config.isMirror = true
         config.isSmooth = true
-        config.smoothInterval = 5
+        config.smoothInterval = 1.5F
         config.countIndex = 3
         config.animationSpeed = 110
         config.timeInterpolator = LinearInterpolator()
@@ -117,4 +111,10 @@ class StraightSideAdapter: VisualizationAudioAdapter() {
         }
         // canvas!!.drawPath(path, mPaint)
     }
+
+    /*override fun onAudioSmooth(model: FloatArray?, view: VisualizationAudioView): FloatArray? {
+        var models = model
+        models = DataManipulationUtil.applyHighPassFilterToData(models, 70F, 100F)
+        return models
+    }*/
 }

@@ -12,7 +12,7 @@
         android:src="@mipmap/img"
         android:scaleType="centerCrop"/>
 
-    <com.pikachu.visualization.audio.VisualizationAudioView
+    <com.pkpk.zaudio.view.VisualizationAudioView
         android:id="@+id/annular_audio"
         android:layout_width="0dp"
         android:layout_height="0dp"

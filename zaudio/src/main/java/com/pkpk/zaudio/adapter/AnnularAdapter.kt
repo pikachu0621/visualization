@@ -1,4 +1,4 @@
-package com.pikachu.visualization.adapter
+package com.pkpk.zaudio.adapter
 
 import android.graphics.Canvas
 import android.graphics.Color
@@ -6,10 +6,9 @@ import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Shader
 import android.view.animation.LinearInterpolator
-import com.pikachu.visualization.audio.DataManipulationUtil
-import com.pikachu.visualization.audio.ViewCorrelationUtil
-import com.pikachu.visualization.audio.VisualizationAudioAdapter
-import com.pikachu.visualization.audio.VisualizationAudioView
+import com.pkpk.zaudio.view.ViewCorrelationUtil
+import com.pkpk.zaudio.view.VisualizationAudioAdapter
+import com.pkpk.zaudio.view.VisualizationAudioView
 
 class AnnularAdapter:  VisualizationAudioAdapter() {
 
@@ -36,7 +35,7 @@ class AnnularAdapter:  VisualizationAudioAdapter() {
         val config = view.getVisualizationAudioConfig()
         config.isMirror = true
         config.isSmooth = true
-        config.smoothInterval = 3
+        config.smoothInterval = 2F
         config.countIndex = 0
         config.animationSpeed = 100
         config.timeInterpolator = LinearInterpolator()

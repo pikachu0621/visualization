@@ -1,10 +1,9 @@
-package com.pikachu.visualization.audio
+package com.pkpk.zaudio.view
 
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
-import android.app.Activity
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
@@ -64,7 +63,7 @@ class VisualizationAudioViewHelper(
         var isSmooth = true
 
         // 平滑区间
-        var smoothInterval: Int = 3
+        var smoothInterval: Float = 2F
 
         // 动画速度 ms    采样时间也同这个速度
         var animationSpeed: Int = 100

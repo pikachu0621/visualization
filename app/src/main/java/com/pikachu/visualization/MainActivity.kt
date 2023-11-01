@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
-import com.pikachu.visualization.adapter.AnnularAdapter
-import com.pikachu.visualization.adapter.AnnularAdapter1
-import com.pikachu.visualization.adapter.StraightSideAdapter
-import com.pikachu.visualization.audio.AudioVisualizerController
-import com.pikachu.visualization.audio.AudioVisualizerController.Companion.SYS_AUDIO_SESSION
 import com.pikachu.visualization.databinding.ActivityMainBinding
+import com.pkpk.zaudio.adapter.AnnularAdapter
+import com.pkpk.zaudio.adapter.AnnularAdapter1
+import com.pkpk.zaudio.adapter.StraightSideAdapter
+import com.pkpk.zaudio.view.AudioVisualizerController
+import com.pkpk.zaudio.view.AudioVisualizerController.Companion.SYS_AUDIO_SESSION
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

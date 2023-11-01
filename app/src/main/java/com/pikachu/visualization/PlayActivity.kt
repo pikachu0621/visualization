@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
-import com.pikachu.visualization.audio.VisualizationAudioAdapter
 import com.pikachu.visualization.databinding.ActivityPalyBinding
+import com.pkpk.zaudio.view.VisualizationAudioAdapter
 
 private const val START_KEY = "start_key"
 

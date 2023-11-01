@@ -1,4 +1,4 @@
-package com.pikachu.visualization.audio
+package com.pkpk.zaudio.view
 
 import kotlin.math.cos
 import kotlin.math.sin

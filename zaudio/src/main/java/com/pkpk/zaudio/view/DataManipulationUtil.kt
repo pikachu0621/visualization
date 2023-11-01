@@ -1,4 +1,6 @@
-package com.pikachu.visualization.audio
+package com.pkpk.zaudio.view
+
+import kotlin.math.exp
 
 
 /**
@@ -14,7 +16,7 @@ object DataManipulationUtil {
      * @param `data` 待处理的数据
      * @return 处理后得到的数据
      */
-    fun cubicSmooth5(`data`: FloatArray?): FloatArray? {
+    fun applySmoothCubic5(`data`: FloatArray?): FloatArray? {
         if (`data` == null || `data`.size < 5) return `data`
         val len = `data`.size
         val out = FloatArray(len)
@@ -32,7 +34,7 @@ object DataManipulationUtil {
      * @param `data` 待处理的数据
      * @return 处理后得到的数据
      */
-    fun cubicSmooth7(`data`: FloatArray?): FloatArray? {
+    fun applySmoothCubic7(`data`: FloatArray?): FloatArray? {
         if (`data` == null || `data`.size < 7) return `data`
         val len = `data`.size
         val out = FloatArray(len)
@@ -53,10 +55,10 @@ object DataManipulationUtil {
      * @param frequency 计算几次
      * @return 处理后得到的数据
      */
-    fun cubicSmooth7(`data`: FloatArray?, frequency: Int): FloatArray? {
+    fun applySmoothCubic7(`data`: FloatArray?, frequency: Int): FloatArray? {
         var dataSmooth: FloatArray? = `data`
         for (i in 0..frequency) {
-            dataSmooth = cubicSmooth7(dataSmooth)
+            dataSmooth = applySmoothCubic7(dataSmooth)
         }
         return dataSmooth
     }
@@ -68,23 +70,22 @@ object DataManipulationUtil {
      * @param frequency 计算几次
      * @return 处理后得到的数据
      */
-    fun cubicSmooth5(`data`: FloatArray?, frequency: Int): FloatArray? {
+    fun applySmoothCubic5(`data`: FloatArray?, frequency: Int): FloatArray? {
         var dataSmooth: FloatArray? = `data`
         for (i in 0..frequency) {
-            dataSmooth = cubicSmooth5(dataSmooth)
+            dataSmooth = applySmoothCubic5(dataSmooth)
         }
         return dataSmooth
     }
 
     /**
-     * 数据平滑
-     * 这里直接用 均值法
+     * 滑动均值算法
      *
      * @param `data`     源数据
      * @param interval 窗口
      * @return FloatArray
      */
-    fun meanValueSmooth(`data`: FloatArray?, interval: Int): FloatArray? {
+    fun applySmoothMovingAverage(`data`: FloatArray?, interval: Int): FloatArray? {
         if (`data` == null || `data`.isEmpty() || interval <= 0) return `data`
         val fst = FloatArray(`data`.size)
         for (i in `data`.indices) {
@@ -100,6 +101,94 @@ object DataManipulationUtil {
         }
         return fst
     }
+
+    /**
+     * 高斯平滑算法
+     * sigma 1 - 100
+     */
+    fun applySmoothGaussian(ttf: FloatArray?, sigma: Float): FloatArray? {
+        if (ttf == null || ttf.isEmpty()) return ttf
+        val size = ttf.size
+        val smoothedData = FloatArray(size)
+
+        var kernelSize = (6 * sigma).toInt()
+        if (kernelSize % 2 == 0) {
+            kernelSize++ // 确保核的大小为奇数
+        }
+        val kernel = generateGaussianKernel(sigma, kernelSize)
+
+        val radius = kernelSize / 2
+
+        for (i in 0 until size) {
+            var smoothedValue = 0.0f
+
+            for (j in -radius..radius) {
+                val index = i + j
+                if (index in 0 until size) {
+                    smoothedValue += (ttf[index] * kernel[j + radius]).toFloat()
+                }
+            }
+
+            smoothedData[i] = smoothedValue
+        }
+
+        return smoothedData
+    }
+    private fun generateGaussianKernel(sigma: Float, size: Int): DoubleArray {
+        val kernel = DoubleArray(size)
+        var sum = 0.0
+        val radius = size / 2
+        for (x in -radius..radius) {
+            val exponent = -((x * x).toDouble() / (2.0 * sigma * sigma))
+            kernel[x + radius] = exp(exponent)
+            sum += kernel[x + radius]
+        }
+        // 标准化核
+        for (x in 0 until size) {
+            kernel[x] /= sum
+        }
+        return kernel
+    }
+
+
+    /**
+     * 指数平滑算法
+     * alpha 0.1 - 2
+     */
+    fun applySmoothExponential(ttf: FloatArray?, alpha: Float): FloatArray? {
+        if (ttf == null || ttf.isEmpty()) return ttf
+        val smoothedData = FloatArray(ttf.size)
+        var lastSmoothedValue: Float? = null
+        for (i in ttf.indices) {
+            val dataPoint = ttf[i]
+            val smoothedValue = if (lastSmoothedValue == null) {
+                // 初始情况：第一个数据点作为初始平滑值
+                dataPoint
+            } else {
+                alpha * dataPoint + (1 - alpha) * lastSmoothedValue
+            }
+            smoothedData[i] = smoothedValue
+            lastSmoothedValue = smoothedValue
+        }
+        return smoothedData
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**

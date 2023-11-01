@@ -1,4 +1,4 @@
-package com.pikachu.visualization.audio
+package com.pkpk.zaudio.view
 
 import android.graphics.Canvas
 
@@ -36,9 +36,7 @@ abstract class VisualizationAudioAdapter {
      */
     open fun onAudioSmooth(model: FloatArray?, view: VisualizationAudioView): FloatArray?{
         var models = model
-        models = DataManipulationUtil.meanValueSmooth(models, view.getVisualizationAudioConfig().smoothInterval)
-        // models = DataManipulationUtil.cubicSmooth5(models, view.getVisualizationAudioConfig().smoothInterval)
-        models = DataManipulationUtil.cubicSmooth7(models)
+        models = DataManipulationUtil.applySmoothGaussian(models, view.getVisualizationAudioConfig().smoothInterval.toFloat())
         return models
     }
 
