@@ -7,34 +7,39 @@
     tools:context=".MainActivity"
     android:padding="20dp">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sys_audio"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/circle_type"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:text="使用系统音频"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/app_audio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton1"
-        android:layout_marginTop="10dp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/vertical_type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButton" />
-
     <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/user_tp"
+        android:id="@+id/app_audio"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:textSize="13sp"
+        android:text="使用App内音频"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sys_audio"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/audio_type"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButton1" />
+        app:layout_constraintTop_toBottomOf="@+id/sys_audio" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

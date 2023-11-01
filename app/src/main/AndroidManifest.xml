@@ -13,11 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.visualization">
         <activity
-            android:name=".StraightSideActivity"
-            android:exported="false"
-            android:theme="@style/Theme.visualization.NoActionBar"/>
-        <activity
-            android:name=".AnnularActivity"
+            android:name=".PlayActivity"
             android:exported="false"
             android:theme="@style/Theme.visualization.NoActionBar"/>
         <activity
