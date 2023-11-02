@@ -51,12 +51,12 @@ class VisualizationAudioViewHelper(
     }
 
     data class MeasureData(val measureWidth: Int, val measureHeight: Int)
-    class VisualizationAudioConfig {
+    class VisualizationAudioConfig : Cloneable {
 
         // 是否镜像
         var isMirror = true
 
-        // 跳过开头的第几个值  靠前值浮动大
+        // 跳过开头的几个高频值  靠前值浮动大
         var countIndex: Int = 0
 
         // 是否平滑
@@ -77,7 +77,7 @@ class VisualizationAudioViewHelper(
         // 幅度
         var range: Float = 5f
 
-        // 阻力 值越大加的越少
+        // 低频补偿 值越大加的越少 值越小加的约大
         var resistance: Float = 0f
 
         /**
@@ -85,6 +85,24 @@ class VisualizationAudioViewHelper(
          */
         var defaultWidth: Int = 400
         var defaultHeight: Int = 400
+
+        public override fun clone(): VisualizationAudioConfig {
+            return super.clone() as VisualizationAudioConfig
+        }
+
+        fun copy() = VisualizationAudioConfig().apply {
+            this@apply.isMirror = this@VisualizationAudioConfig.isMirror
+            this@apply.countIndex = this@VisualizationAudioConfig.countIndex
+            this@apply.isSmooth = this@VisualizationAudioConfig.isSmooth
+            this@apply.smoothInterval = this@VisualizationAudioConfig.smoothInterval
+            this@apply.animationSpeed = this@VisualizationAudioConfig.animationSpeed
+            this@apply.timeInterpolator = this@VisualizationAudioConfig.timeInterpolator
+            this@apply.maxRange = this@VisualizationAudioConfig.maxRange
+            this@apply.range = this@VisualizationAudioConfig.range
+            this@apply.resistance = this@VisualizationAudioConfig.resistance
+            this@apply.defaultWidth = this@VisualizationAudioConfig.defaultWidth
+            this@apply.defaultHeight = this@VisualizationAudioConfig.defaultHeight
+        }
     }
 
 

@@ -56,8 +56,10 @@ object DataManipulationUtil {
      * @return 处理后得到的数据
      */
     fun applySmoothCubic7(`data`: FloatArray?, frequency: Int): FloatArray? {
+        var copyVar = frequency
+        if (copyVar <= 0) copyVar = 1
         var dataSmooth: FloatArray? = `data`
-        for (i in 0..frequency) {
+        for (i in 0..copyVar) {
             dataSmooth = applySmoothCubic7(dataSmooth)
         }
         return dataSmooth
@@ -71,8 +73,10 @@ object DataManipulationUtil {
      * @return 处理后得到的数据
      */
     fun applySmoothCubic5(`data`: FloatArray?, frequency: Int): FloatArray? {
+        var copyVar = frequency
+        if (copyVar <= 0) copyVar = 1
         var dataSmooth: FloatArray? = `data`
-        for (i in 0..frequency) {
+        for (i in 0..copyVar) {
             dataSmooth = applySmoothCubic5(dataSmooth)
         }
         return dataSmooth
@@ -86,13 +90,15 @@ object DataManipulationUtil {
      * @return FloatArray
      */
     fun applySmoothMovingAverage(`data`: FloatArray?, interval: Int): FloatArray? {
-        if (`data` == null || `data`.isEmpty() || interval <= 0) return `data`
+        var copyVar = interval
+        if (copyVar <= 0) copyVar = 1
+        if (`data` == null || `data`.isEmpty()) return `data`
         val fst = FloatArray(`data`.size)
         for (i in `data`.indices) {
             var `var` = 0f
-            if (i + interval < `data`.size) {
-                for (j in 0 until interval) `var` += `data`[i + j]
-                fst[i] = `var` / interval
+            if (i + copyVar < `data`.size) {
+                for (j in 0 until copyVar) `var` += `data`[i + j]
+                fst[i] = `var` / copyVar
             } else {
                 val i1 = `data`.size - i
                 for (j in 0 until i1) `var` += `data`[i + j]
@@ -107,15 +113,17 @@ object DataManipulationUtil {
      * sigma 1 - 100
      */
     fun applySmoothGaussian(ttf: FloatArray?, sigma: Float): FloatArray? {
+        var copyVar = sigma
+        if (copyVar <= 0) copyVar = 1F
         if (ttf == null || ttf.isEmpty()) return ttf
         val size = ttf.size
         val smoothedData = FloatArray(size)
 
-        var kernelSize = (6 * sigma).toInt()
+        var kernelSize = (6 * copyVar).toInt()
         if (kernelSize % 2 == 0) {
             kernelSize++ // 确保核的大小为奇数
         }
-        val kernel = generateGaussianKernel(sigma, kernelSize)
+        val kernel = generateGaussianKernel(copyVar, kernelSize)
 
         val radius = kernelSize / 2
 
@@ -156,6 +164,8 @@ object DataManipulationUtil {
      * alpha 0.1 - 2
      */
     fun applySmoothExponential(ttf: FloatArray?, alpha: Float): FloatArray? {
+        var copyVar = alpha
+        if (copyVar <= 0) copyVar = 1F
         if (ttf == null || ttf.isEmpty()) return ttf
         val smoothedData = FloatArray(ttf.size)
         var lastSmoothedValue: Float? = null
@@ -165,7 +175,7 @@ object DataManipulationUtil {
                 // 初始情况：第一个数据点作为初始平滑值
                 dataPoint
             } else {
-                alpha * dataPoint + (1 - alpha) * lastSmoothedValue
+                copyVar * dataPoint + (1 - copyVar) * lastSmoothedValue
             }
             smoothedData[i] = smoothedValue
             lastSmoothedValue = smoothedValue

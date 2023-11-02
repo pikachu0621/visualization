@@ -48,15 +48,7 @@ class PlayActivity : AppCompatActivity() {
         }
         binding.annularAudio.setAdapter(createAdapter, this)
         binding.annularAudio.start()
-
-        binding.landscape.setOnClickListener {
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        }
-
-        binding.portraitScreen.setOnClickListener {
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        }
-
+        ZAudiocontroller(this, binding.conRoot, binding.annularAudio)
     }
 
 

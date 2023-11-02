@@ -30,16 +30,21 @@ open class VisualizationAudioView : View, IVisualizationAudioView {
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
         init(context, attrs, defStyleAttr, defStyleRes)
     }
-    private fun init(context: Context?,
-                     attrs: AttributeSet?,
-                     defStyleAttr: Int,
-                     defStyleRes: Int){
+
+    private fun init(
+        context: Context?,
+        attrs: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
+    ) {
         context ?: return
-        visualizationAudioViewHelper = VisualizationAudioViewHelper(context, attrs, defStyleAttr, owner = this)
+        visualizationAudioViewHelper =
+            VisualizationAudioViewHelper(context, attrs, defStyleAttr, owner = this)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        if (context == null) setMeasuredDimension(0, 0)
         visualizationAudioViewHelper.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
