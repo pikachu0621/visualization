@@ -21,7 +21,7 @@ class ZAudiocontroller(
     private val root: FrameLayout,
     private val visView: VisualizationAudioView,
 ) {
-    private val config = visView.getVisualizationAudioConfig()
+    private var config = visView.getVisualizationAudioConfig()
     private val configCopy = config.copy()
     private val binding by lazy {
         UiZaudioControllerBinding.inflate(
@@ -40,7 +40,9 @@ class ZAudiocontroller(
         configBindView(binding)
 
         binding.dataReset.setOnClickListener {
-            configBindView(binding, configCopy)
+            config = configCopy.copy()
+            configBindView(binding, config)
+            visView.setVisualizationAudioConfig(config)
         }
 
 
@@ -77,13 +79,13 @@ class ZAudiocontroller(
         }
 
         ///
-        binding.seekBar1.setOnSeekBarChangeListener(SeekBarComputeChangeListener(0F, 20F) {
+        binding.seekBar1.setOnSeekBarChangeListener(SeekBarComputeChangeListener(0F, 10F) {
             config.smoothInterval = it
             replaceText(binding.seekBar1t, it)
             renewalConfig()
         })
 
-        binding.seekBar2.setOnSeekBarChangeListener(SeekBarComputeChangeListener {
+        binding.seekBar2.setOnSeekBarChangeListener(SeekBarComputeChangeListener(0F, 20F) {
             config.countIndex = it.toInt()
             replaceText(binding.seekBar2t, it)
             renewalConfig()
@@ -101,15 +103,15 @@ class ZAudiocontroller(
 
         binding.seekBar4.setOnSeekBarChangeListener(
             SeekBarComputeChangeListener(
-                newMax = 1000F,
-                oldMax = 1000F
+                newMax = 500F,
+                oldMax = 500F
             ) {
                 config.maxRange = it
                 replaceText(binding.seekBar4t, it)
                 renewalConfig()
             })
 
-        binding.seekBar5.setOnSeekBarChangeListener(SeekBarComputeChangeListener(0F, 20F) {
+        binding.seekBar5.setOnSeekBarChangeListener(SeekBarComputeChangeListener(0F, 15F) {
             config.range = it
             replaceText(binding.seekBar5t, it)
             renewalConfig()
@@ -132,11 +134,11 @@ class ZAudiocontroller(
         val cng = config ?: this.config
         binding.sw1.isChecked = cng.isMirror
         binding.sw2.isChecked = cng.isSmooth
-        binding.seekBar1.setBarVar(binding.seekBar1t, cng.smoothInterval, 0F, 20F)
-        binding.seekBar2.setBarVar(binding.seekBar2t, cng.countIndex.toFloat())
+        binding.seekBar1.setBarVar(binding.seekBar1t, cng.smoothInterval, 0F, 10F)
+        binding.seekBar2.setBarVar(binding.seekBar2t, cng.countIndex.toFloat(),   0F, 20F)
         binding.seekBar3.setBarVar(binding.seekBar3t, cng.animationSpeed.toFloat(),  newMax = 300F, oldMax = 300F)
-        binding.seekBar4.setBarVar(binding.seekBar4t, cng.maxRange,   newMax = 1000F, oldMax = 1000F)
-        binding.seekBar5.setBarVar(binding.seekBar5t, cng.range,   0F, 20F)
+        binding.seekBar4.setBarVar(binding.seekBar4t, cng.maxRange,   newMax = 500F, oldMax = 500F)
+        binding.seekBar5.setBarVar(binding.seekBar5t, cng.range,   0F, 15F)
         binding.seekBar6.setBarVar(binding.seekBar6t, cng.resistance)
     }
 
@@ -147,7 +149,7 @@ class ZAudiocontroller(
         newMin: Float = 0F,
         newMax: Float = 100F,
         oldMin: Float = 0F,
-        oldMax: Float = 100F
+        oldMax: Float = 100F,
     ) {
         this.max = oldMax.toInt()
         this.progress =
@@ -155,7 +157,7 @@ class ZAudiocontroller(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             this.min = oldMin.toInt()
         }
-        replaceText(textView, progress.toFloat())
+        replaceText(textView, originalValue)
         // replace("{num}", "($progress)")
     }
 
