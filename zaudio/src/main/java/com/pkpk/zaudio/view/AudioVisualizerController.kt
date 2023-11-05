@@ -16,7 +16,7 @@ class AudioVisualizerController private constructor(private val context: Context
     private var visualizer: Visualizer? = null
     private var count = 0
     private var countIndex = 1 // 跳过开头的第几个值
-    private var fftListener: ((model: FloatArray?) -> Unit)? = null
+    private var fftListener: ((model: FloatArray?, fft: ByteArray?) -> Unit)? = null
     private var model: FloatArray? = null
 
 
@@ -46,10 +46,27 @@ class AudioVisualizerController private constructor(private val context: Context
         }
 
         fun getAudioSession() = this.audioSession
+
+
+        // 10000  = 100   20000 = 50   300000 = 25
+        // 1 + 0.005
+        fun getAnimationSpeed(): Float {
+            val maxCaptureRate = Visualizer.getMaxCaptureRate()
+            val qualify = 10000F
+            val qualifyAnimationSpeed = 100F
+            val qualifyRte = 0.005F
+            return if (maxCaptureRate >= qualify){
+                qualifyAnimationSpeed - (maxCaptureRate - qualify) * qualifyRte
+            } else {
+                qualifyAnimationSpeed + (qualify - maxCaptureRate) * qualifyRte
+            } + 10
+        }
     }
 
 
     // 获取当前一组数据
+    // 基本 100ms 采样一次
+    // 速度快了 会导致 数据一样
     fun getModel(): FloatArray? {
         if (count <= 0 || model == null || model!!.size < count + countIndex) return model
         val floats = FloatArray(count)
@@ -63,6 +80,8 @@ class AudioVisualizerController private constructor(private val context: Context
         visualizer?.release()
         visualizer = Visualizer(audioSession)
         visualizer!!.captureSize = Visualizer.getCaptureSizeRange()[1]
+        println("captureSize = ${visualizer!!.captureSize}")
+        println("maxCaptureRate = ${Visualizer.getMaxCaptureRate()}")
         visualizer!!.setDataCaptureListener(object : OnDataCaptureListener {
             override fun onWaveFormDataCapture(
                 visualizer: Visualizer,
@@ -88,9 +107,9 @@ class AudioVisualizerController private constructor(private val context: Context
                     j++
                     model!![j] = abs(model!![j])
                 }
-                fftListener?.let { it((model)) }
+                fftListener?.let { it(model, fft) }
             }
-        }, Visualizer.getMaxCaptureRate() / 2, true, true)
+        }, Visualizer.getMaxCaptureRate() /* / 2*/, true, true)
         visualizer!!.enabled = true
     }
 
@@ -101,7 +120,7 @@ class AudioVisualizerController private constructor(private val context: Context
     }
 
     // 设置监听
-    fun setFftListener(fftListener: (model: FloatArray?) -> Unit) {
+    fun setFftListener(fftListener: (model: FloatArray?, fft: ByteArray?) -> Unit) {
         this.fftListener = fftListener
     }
 

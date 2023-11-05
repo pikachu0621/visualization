@@ -16,7 +16,7 @@ import com.pkpk.zaudio.view.VisualizationAudioViewHelper
 /**
  * 控制器
  */
-class ZAudiocontroller(
+class ZAudioController(
     private val activity: Activity,
     private val root: FrameLayout,
     private val visView: VisualizationAudioView,
@@ -36,6 +36,7 @@ class ZAudiocontroller(
         loadView(binding)
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     private fun loadView(binding: UiZaudioControllerBinding){
         configBindView(binding)
 

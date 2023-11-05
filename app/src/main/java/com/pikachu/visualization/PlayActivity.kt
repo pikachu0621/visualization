@@ -3,7 +3,6 @@ package com.pikachu.visualization
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
@@ -11,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.pikachu.visualization.databinding.ActivityPalyBinding
+import com.pkpk.zaudio.view.AudioVisualizerController
 import com.pkpk.zaudio.view.VisualizationAudioAdapter
+import java.util.Arrays
 
 private const val START_KEY = "start_key"
 
@@ -48,7 +49,31 @@ class PlayActivity : AppCompatActivity() {
         }
         binding.annularAudio.setAdapter(createAdapter, this)
         binding.annularAudio.start()
-        ZAudiocontroller(this, binding.conRoot, binding.annularAudio)
+        ZAudioController(this, binding.conRoot, binding.annularAudio)
+
+
+        val instance = AudioVisualizerController.getInstance(this)
+        /*instance.setCount(1023)
+        instance.setFftListener { model, fft ->
+            println("MODE: ${Arrays.toString(model)}")
+            println("FFT: ${Arrays.toString(fft)}")
+        }*/
+        Thread {
+            var dr: FloatArray? = floatArrayOf()
+            var timeUp = System.currentTimeMillis()
+            while (true) {
+                // Thread.sleep(100)
+                val model = instance.getModel()
+
+                if (Arrays.toString(model) != Arrays.toString(dr)){
+                    val currentTimeMillis = System.currentTimeMillis()
+                    println(" ${currentTimeMillis - timeUp} : ${Arrays.toString(model)}")
+                    timeUp = currentTimeMillis
+                }
+                dr = model
+            }
+        }.start()
+
     }
 
 

@@ -39,7 +39,7 @@ class AnnularAdapter1:  VisualizationAudioAdapter() {
         config.isSmooth = false
         config.smoothInterval = 2F
         config.countIndex = 0
-        config.animationSpeed = 80
+        // config.animationSpeed = 80
         config.timeInterpolator = LinearInterpolator()
         config.range = 5F
     }

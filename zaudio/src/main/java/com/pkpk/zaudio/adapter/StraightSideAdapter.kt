@@ -30,7 +30,7 @@ class StraightSideAdapter: VisualizationAudioAdapter() {
         config.isSmooth = true
         config.smoothInterval = 1.5F
         config.countIndex = 3
-        config.animationSpeed = 110
+        // config.animationSpeed = 110
         config.timeInterpolator = LinearInterpolator()
         config.range = 5F
         config.resistance = 4F

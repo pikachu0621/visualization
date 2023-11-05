@@ -1,5 +1,7 @@
 package com.pkpk.zaudio
 
+import android.app.AppOpsManager
+import com.pkpk.zaudio.view.AudioVisualizerController
 import org.junit.Test
 
 import org.junit.Assert.*

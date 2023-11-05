@@ -65,8 +65,8 @@ class VisualizationAudioViewHelper(
         // 平滑区间
         var smoothInterval: Float = 2F
 
-        // 动画速度 ms    采样时间也同这个速度
-        var animationSpeed: Int = 100
+        // 动画速度 ms    采样时间也同这个速度 100
+        var animationSpeed: Int = AudioVisualizerController.getAnimationSpeed().toInt()
 
         // 差值器
         var timeInterpolator: TimeInterpolator = DecelerateInterpolator()
@@ -202,7 +202,7 @@ class VisualizationAudioViewHelper(
         if (toModel.size != model.size) toModel = DataManipulationUtil.dataFilling(to, model.size)
         if (animatorSet != null && animatorSet!!.isRunning) {
             animatorSet!!.cancel()
-            animatorSet = null
+            animatorSet!!.end()
         }
         val dd = FloatArray(model.size)
         animatorSet = AnimatorSet()
